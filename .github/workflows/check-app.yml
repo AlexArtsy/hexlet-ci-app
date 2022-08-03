@@ -11,14 +11,14 @@ jobs:
     steps: # список шагов, которые надо выполнить
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          uses: snyk/actions/node@master
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       # https://github.com/actions/setup-node
       - uses: actions/setup-node@v2
-          with:
-            node-version: '16.x'
-            cache: 'npm' # ускоряет повторные сборки
+        with:
+          node-version: '16.x'
+          cache: 'npm' # ускоряет повторные сборки
       # run – произвольная bash-команда
       - run: make setup build
       - run: make test
